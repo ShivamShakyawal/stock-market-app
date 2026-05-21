@@ -77,6 +77,44 @@ function displayStock(data) {
 }
 
 
+function loadChart(symbol) {
+
+    document.getElementById("chartContainer").innerHTML = "";
+
+    new TradingView.widget({
+
+        container_id: "chartContainer",
+
+        autosize: true,
+
+        symbol: symbol,
+
+        interval: "D",
+
+        timezone: "Etc/UTC",
+
+        theme: "dark",
+
+        style: "1",
+
+        locale: "en",
+
+        toolbar_bg: "#0f172a",
+
+        enable_publishing: false,
+
+        hide_top_toolbar: false,
+
+        hide_legend: false,
+
+        save_image: false
+
+    });
+
+}
+
+
+
 const exampleButtons = document.querySelectorAll(".examples button");
 console.log(exampleButtons);
 
@@ -103,6 +141,8 @@ async function fetchStock(symbol) {
 
         displayStock(data);
 
+        loadChart(symbol);
+
     }
 
     catch(err) {
@@ -112,3 +152,5 @@ async function fetchStock(symbol) {
     }
 
 }
+
+fetchStock("AAPL");
